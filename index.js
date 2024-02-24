@@ -34,12 +34,12 @@ function createUsername(baseUsername) {
         }
     }
     
-    // console.log(userNames); | testing what userNames[] is before...
+    // console.log(userNames); // | testing what userNames[] is before...
     
     // add username to the end of userNames[]
     userNames.push(username);
 
-    // console.log(userNames); | and after. userNames[] is updated but only in server file
+    // console.log(userNames); // | and after. userNames[] is updated but only in server file before refresh.
 
     return username;
 }
@@ -56,11 +56,11 @@ Create a username and email address for a student.
 function createEmail(fullName) {
 
     // error handling
-    if (fullName === null || fullName.trim() === "") { // if user enters empty response / no response
-        return `Error no name given.`;
-    } else if (fullName.toLowerCase() === "cancel") { // if user enters cancel or Cancel
-        return `Program canceled.`;
-    }
+    // if (fullName === null || fullName.trim() === "") { // if user enters empty response / no response
+    //     return `Error no name given.`;
+    // } else if (fullName.toLowerCase() === "cancel") { // if user enters cancel or Cancel
+    //     return `Program canceled.`; 
+    // }
 
     // remove special characters and split fullName w/ " "
     const noSpecialChar = fullName.replace(/[^a-zA-Z ]/g, ""); // remove characters that are NOT letters NOR spaces
@@ -79,8 +79,37 @@ function createEmail(fullName) {
 
 }
 
+// ? Practice 1.3
+
+function askToCreateMore() {
+    let continueCreating = true;
+
+    while (continueCreating) {
+        let promptName = prompt('Enter your full name:');
+
+        // check if prompt was cancelled or null
+        if (promptName === null || promptName.toLowerCase() === "cancel") {
+            console.log('Program canceled.');
+            break;
+        } else if (promptName) { // if not null, not "cancel", and not an empty string, create email
+            let userInfo = createEmail(promptName);
+            console.log(userInfo);
+        } else { // if empty string but not cancelled
+            console.log('Error no name given');
+            break;
+        }
+
+        let response = prompt('Would you like to create another email address? (yes/no)');
+        if (response === null || response.toLowerCase() !== 'yes') { // only continue if user says 'yes'
+            continueCreating = false; // stop creating loop
+            console.log('Goodbye.');
+        }
+    }
+}
+
+askToCreateMore();
 
 // usage
-let promptName = prompt('Enter your full name:');
-let userInfo = createEmail(promptName);
-console.log(userInfo);
+// let promptName = prompt('Enter your full name:');
+// let userInfo = createEmail(promptName);
+// console.log(userInfo);
