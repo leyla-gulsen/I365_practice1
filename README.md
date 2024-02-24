@@ -54,7 +54,7 @@ let userNames = [
     'stmendis2',
     'akeshapula',
     'sholongain',
-    'sholangai1',
+    'sholongai1',
 ];
 ```
 
@@ -63,7 +63,7 @@ let userNames = [
 Use these same names to test your code. The resulting email is shown.
 
 -   Steve Mendis => stmendis3@iu.edu
--   Shelby Anne O'Longain => sholangai2@iu.edu
+-   Shelby Anne O'Longain => sholangai2@iu.edu ***(assuming typo here? sholongain@iu.edu)***
 -   Hubert Blaine Wolfeschlegelsteinhausenbergerdorff => huwolfesch@iu.edu
 
 ## Practice 1.3

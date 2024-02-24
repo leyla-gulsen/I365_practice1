@@ -1,5 +1,49 @@
 'use strict';
 
+// ? Practice 1.2
+
+// given array of usernames
+let userNames = [
+    'erlee',
+    'erlee1',
+    'stmendis',
+    'bekizior',
+    'mabekova',
+    'stmendis1',
+    'stmendis2',
+    'akeshapula',
+    'sholongain',
+    'sholongai1',
+];
+
+// function
+function createUsername(baseUsername) {
+    let username = baseUsername;
+    
+    // if the array already contains the username...
+    if (userNames.includes(username)) {
+        // add a number to the end from 1 to 9 
+        for (let i = 1; i <= 9; i++) {
+            // if the username is 10 characters long, then replace the final letter with a number instead.
+            let tempUserName = username.length >= 10 ? username.substring(0, 9) + i : username + i;
+            // if this temporary username doesnt already exisit, assign it to username
+            if (!userNames.includes(tempUserName)) {
+                username = tempUserName;
+                break;
+            }
+        }
+    }
+    
+    // console.log(userNames); | testing what userNames[] is before...
+    
+    // add username to the end of userNames[]
+    userNames.push(username);
+
+    // console.log(userNames); | and after. userNames[] is updated but only in server file
+
+    return username;
+}
+
 // ? Practice 1.1
 
 /*
@@ -25,7 +69,7 @@ function createEmail(fullName) {
     const lastName = names[names.length - 1] // incase user adds a middle name, it is ignored and the last item in array is used as the last name
 
     // create username (first two letters of firstName + lastName, limit to 10 chars)
-    let username = (firstName.substring(0, 2) + lastName).toLowerCase().substring(0, 10);
+    let username = createUsername((firstName.substring(0, 2) + lastName).toLowerCase().substring(0, 10));
 
     // create email
     const email = `${username}@iu.edu`
