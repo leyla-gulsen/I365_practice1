@@ -16,23 +16,47 @@ let userNames = [
     'sholongai1',
 ];
 
+// ? Bonus part
+
 // function
 function createUsername(baseUsername) {
     let username = baseUsername;
-    
-    // if the array already contains the username...
-    if (userNames.includes(username)) {
-        // add a number to the end from 1 to 9 
-        for (let i = 1; i <= 9; i++) {
-            // if the username is 10 characters long, then replace the final letter with a number instead.
-            let tempUserName = username.length >= 10 ? username.substring(0, 9) + i : username + i;
-            // if this temporary username doesnt already exisit, assign it to username
-            if (!userNames.includes(tempUserName)) {
-                username = tempUserName;
-                break;
-            }
+    let suffix = 1; // start suffix from 1 for duplicates
+
+    // check if the username already exists and create a unique one by appending a number
+    while (userNames.includes(username)) {
+        let tempUsername = baseUsername; // temporarily hold base username to manipulate it
+        let num2str = suffix.toString(); // convert the suffix to a string to be added to username
+
+        // calculate how many characters to remove from the base username to fit the suffix
+        let charsToRemove = Math.max(0, tempUsername.length + num2str.length - 10); // Math.max takes largest number, ensures no negative value for characters to remove | https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max
+            // * a negative number could happen if the length of the base username combined with the suffix number is less than or equal to 10 characters, where no characters would need to be removed, and we cant remove a negative number
+
+        // remove necessary number of characters from the end of username to add suffix 
+        tempUsername = tempUsername.substring(0, tempUsername.length - charsToRemove) + num2str;
+
+        // is username generated above unique? / already in userNames[] ?
+        if (!userNames.includes(tempUsername)) {
+            // if unique, set username to new value
+            username = tempUsername;
+            break;
         }
+        suffix++; // increment suffix for next iteration if the username is still not unique
     }
+    
+    ////if the array already contains the username...
+    ////if (userNames.includes(username)) {
+    //    //add a number to the end from 1 to 9 
+    ////    for (let i = 1; i <= 9; i++) {
+    //        //if the username is 10 characters long, then replace the final letter with a number instead.
+    ////        let tempUserName = username.length >= 10 ? username.substring(0, 9) + i : username + i;
+    //        //if this temporary username doesnt already exisit, assign it to username
+    ////        if (!userNames.includes(tempUserName)) {
+    ////            username = tempUserName;
+    ////            break;
+    ////        }
+    ////    }
+    ////}
     
     // console.log(userNames); // | testing what userNames[] is before...
     
@@ -55,12 +79,12 @@ Create a username and email address for a student.
 // function
 function createEmail(fullName) {
 
-    // error handling
-    // if (fullName === null || fullName.trim() === "") { // if user enters empty response / no response
-    //     return `Error no name given.`;
-    // } else if (fullName.toLowerCase() === "cancel") { // if user enters cancel or Cancel
-    //     return `Program canceled.`; 
-    // }
+    //// error handling
+    //// if (fullName === null || fullName.trim() === "") { // if user enters empty response / no response
+    ////     return `Error no name given.`;
+    //// } else if (fullName.toLowerCase() === "cancel") { // if user enters cancel or Cancel
+    ////    return `Program canceled.`; 
+    //// }
 
     // remove special characters and split fullName w/ " "
     const noSpecialChar = fullName.replace(/[^a-zA-Z ]/g, ""); // remove characters that are NOT letters NOR spaces
@@ -109,7 +133,7 @@ function askToCreateMore() {
 
 askToCreateMore();
 
-// usage
-// let promptName = prompt('Enter your full name:');
-// let userInfo = createEmail(promptName);
-// console.log(userInfo);
+//// usage
+//// let promptName = prompt('Enter your full name:');
+//// let userInfo = createEmail(promptName);
+//// console.log(userInfo);
