@@ -31,7 +31,7 @@ let userInfo = createEmail(promptName);
 Use these names to test your code. The resulting email is shown.
 
 -   Steve Mendis => stmendis@iu.edu
--   Shelby Anne O'Longain => sholangain@iu.edu
+-   Shelby Anne O'Longain => sholangain@iu.edu ***(assuming typo here? sholongain@iu.edu)***
 -   Hubert Blaine Wolfeschlegelsteinhausenbergerdorff => huwolfesch@iu.edu
 
 ## Practice 1.2
